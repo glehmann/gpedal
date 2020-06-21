@@ -1,0 +1,54 @@
+
+left:
+
+GND
+5V
+3.3
+GND
+GPIO1: rx
+GPIO3: tx
+GPIO15 (outputs pwm at boot, ADC, rtc): OLED SCL
+GPIO2 (ADC): led
+GPIO0 (ADC, rtc): button RTC - hibernate button
+GPIO4 (ADC, rtc): OLED SDA
+GPIO16: OLED RST
+GPIO17: STATUS
+GPIO05 (outputs pwm at boot): #############################
+GPIO18: rx USB
+GPIO23: tx USB
+GPIO19: (on pedalino mini: data leds) midi in
+GPIO22: (on pedalino mini: latch leds) midi out
+GPIO21: (on pedalino mini: clock leds) #############################
+
+
+right:
+
+GND
+5V
+3.3
+RST
+GPIO13 (ADC, rtc): PIN_D6 (not connected)
+GPIO12 (boot failed if pulled high, prefer output, ADC, rtc): #############################
+GPIO14 (outputs pwm at boot, ADC): PIN_D1
+GPIO27 (ADC, rtc): PIN_D2
+GPIO26 (ADC, DAC, rtc): PIN_D3
+GPIO25 (ADC, DAC, rtc): PIN_D4
+GPIO33* (ADC, rtc): PIN_D5
+GPIO32* (ADC, rtc): Battery Sense
+GPIO35* (input only, ADC, rtc, no pullup): PIN_A1
+GPIO34* (input only, ADC, rtc, no pullup): PIN_A2
+GPIO39: PIN_A3
+GPIO38* (ADC only): PIN_A4
+GPIO37* (ADC only): PIN_A5
+GPIO36* (input only, ADC, rtc, no pullup): PIN_A6 (not connected)
+
+
+
+
+
+pedal 1: first foot switch row
+pedal 2: second foot switch row
+pedal 3: left socket
+pedal 4: back socket
+pedal 5: right socket
+pedal 6: not connected
