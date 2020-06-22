@@ -60,10 +60,10 @@ GPIO36* (input only, ADC, rtc, no pullup): PIN_A6 (not connected)
 // #define PIN_ GPIO_NUM_13
 // not used
 // #define PIN_ GPIO_NUM_12
-#define PIN_D_BUTTON_LADDER_TOP GPIO_NUM_14
-// GPIO 27 is broken on my board, so top and botton ladder are soldered together
-// #define PIN_D_BUTTON_LADDER_BOTTOM GPIO_NUM_27
-#define PIN_D_BUTTON_LADDER_BOTTOM GPIO_NUM_14
+// not used
+//#define PIN_ GPIO_NUM_14
+// not used
+//#define PIN_ GPIO_NUM_27
 #define PIN_D_EXPRESSION_RIGHT GPIO_NUM_26
 #define PIN_D_EXPRESSION_BACK GPIO_NUM_25
 #define PIN_D_EXPRESSION_LEFT GPIO_NUM_33

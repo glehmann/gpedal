@@ -2,7 +2,6 @@
 #define __leds_h
 
 #include <Adafruit_PWMServoDriver.h>
-#include "i2c.h"
 
 #define LEDS_LEVEL_HIGH 220
 #define LEDS_LEVEL_LOW 10
