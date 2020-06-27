@@ -27,9 +27,9 @@ int expressions_map(int exp, int raw_value) {
 }
 
 void expressions_setup() {
-    _expressions[0] = ResponsiveAnalogRead(PIN_A_EXPRESSION_LEFT, true, 0.01);
-    _expressions[1] = ResponsiveAnalogRead(PIN_A_EXPRESSION_BACK, true, 0.01);
-    _expressions[2] = ResponsiveAnalogRead(PIN_A_EXPRESSION_RIGHT, true, 0.01);
+    _expressions[0] = ResponsiveAnalogRead(PIN_A_EXPRESSION_LEFT, true, 0.05);
+    _expressions[1] = ResponsiveAnalogRead(PIN_A_EXPRESSION_BACK, true, 0.05);
+    _expressions[2] = ResponsiveAnalogRead(PIN_A_EXPRESSION_RIGHT, true, 0.05);
     pinMode(PIN_D_EXPRESSION_LEFT, OUTPUT);
     digitalWrite(PIN_D_EXPRESSION_LEFT, HIGH);
     pinMode(PIN_D_EXPRESSION_BACK, OUTPUT);
