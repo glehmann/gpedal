@@ -18,13 +18,11 @@ void leds_setup() {
 }
 
 void leds_on(int led) {
-    Serial.printf("led %i on\n", led);
     _leds_status[led] = true;
     _leds_pwm.setPWM(led, 0, LEDS_LEVEL_HIGH);
 }
 
 void leds_off(int led) {
-    Serial.printf("led %i off\n", led);
     _leds_status[led] = false;
     _leds_pwm.setPWM(led, 0, LEDS_LEVEL_LOW);
 }

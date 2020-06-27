@@ -4,6 +4,7 @@
 #include "pin.h"
 #include "leds.h"
 #include "midi.h"
+#include <EEPROM.h>
 
 #define LADDER_SIZE 2
 #define BUTTONS_SIZE 8
@@ -15,10 +16,7 @@ bool _buttons_status[BUTTONS_SIZE];
 void buttons_setup() {
     _buttons_ladder[0] = ResponsiveAnalogRead(PIN_A_BUTTON_LADDER_TOP, true);
     _buttons_ladder[1] = ResponsiveAnalogRead(PIN_A_BUTTON_LADDER_BOTTOM, true);
-    // no button activated at startup
-    for(int i=0; i<BUTTONS_SIZE; i++) {
-        _buttons_status[i] = false;
-    }
+    buttons_restore();
     _buttons_previous_button[0] = -1;
     _buttons_previous_button[1] = -1;
 }
@@ -117,4 +115,27 @@ void buttons_loop() {
     //         _buttons_ladder[ladder].getValue(),
     //         buttons_level_to_button(_buttons_ladder[ladder].getValue()));
     // }
+}
+
+void buttons_restore() {
+    Serial.println("Restoring buttons");
+    EEPROM.begin(BUTTONS_SIZE);
+    for(int i=0; i<BUTTONS_SIZE; i++) {
+        // don't use the function to avoid sending midi signals
+        _buttons_status[i] = EEPROM.read(i);
+        if(buttons_status(i)) {
+            leds_on(i);
+        } else {
+            leds_off(i);
+        }
+    }
+    buttons_print();
+}
+
+void buttons_persist() {
+    Serial.println("Persisting buttons");
+    for(int i=0; i<BUTTONS_SIZE; i++) {
+        EEPROM.write(i, buttons_status(i));
+    }
+    EEPROM.commit();
 }

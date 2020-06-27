@@ -2,6 +2,7 @@
 #include "pin.h"
 #include <Arduino.h>
 #include <Bounce2.h>
+#include "buttons.h"
 
 Bounce _sleep_debouncer = Bounce();
 
@@ -13,6 +14,7 @@ void sleep_setup() {
 void sleep_loop() {
     _sleep_debouncer.update();
     if(_sleep_debouncer.rose()) {
+        buttons_persist();
         Serial.println("Going to sleep!");
         esp_deep_sleep_start();
     }
