@@ -9,7 +9,6 @@
 void leds_setup();
 void leds_on(int led);
 void leds_off(int led);
-void leds_toggle(int led);
-bool leds_status(int led);
+void leds_switch(int led, bool status);
 
 #endif

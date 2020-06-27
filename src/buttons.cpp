@@ -123,11 +123,7 @@ void buttons_restore() {
     for(int i=0; i<BUTTONS_SIZE; i++) {
         // don't use the function to avoid sending midi signals
         _buttons_status[i] = EEPROM.read(i);
-        if(buttons_status(i)) {
-            leds_on(i);
-        } else {
-            leds_off(i);
-        }
+        leds_switch(i, buttons_status(i));
     }
     buttons_print();
 }

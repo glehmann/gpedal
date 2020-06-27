@@ -10,10 +10,10 @@ void setup() {
     Serial.println("=========== setup =============");
     pin_setup();
     leds_setup();
-    buttons_setup();
     midi_setup();
     battery_setup();
     sleep_setup();
+    buttons_setup();
     Serial.println("=========== setup complete =============");
     Serial.printf("battery level: %f  voltage: %f  charging: %i\n", battery_level(), battery_voltage(), battery_charging());
 }

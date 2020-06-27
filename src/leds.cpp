@@ -4,7 +4,6 @@
 #define LEDS_SIZE 8
 
 Adafruit_PWMServoDriver _leds_pwm;
-bool _leds_status[LEDS_SIZE];
 
 void leds_setup() {
     // activate button leds at there default level
@@ -12,29 +11,21 @@ void leds_setup() {
     _leds_pwm.begin();
     _leds_pwm.reset();
     _leds_pwm.setPWMFreq(1600);  // This is the maximum PWM frequency
-    for (int led=0; led < LEDS_SIZE; led++) {
-        leds_off(led);
-    }
+    // led state is initiated with the buttons
 }
 
 void leds_on(int led) {
-    _leds_status[led] = true;
     _leds_pwm.setPWM(led, 0, LEDS_LEVEL_HIGH);
 }
 
 void leds_off(int led) {
-    _leds_status[led] = false;
     _leds_pwm.setPWM(led, 0, LEDS_LEVEL_LOW);
 }
 
-void leds_toggle(int led) {
-    if(leds_status(led)) {
-        leds_off(led);
-    } else {
+void leds_switch(int led, bool status) {
+    if(status) {
         leds_on(led);
+    } else {
+        leds_off(led);
     }
-}
-
-bool leds_status(int led) {
-    return _leds_status[led];
 }
