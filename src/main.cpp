@@ -4,6 +4,7 @@
 #include "midi.h"
 #include "battery.h"
 #include "sleep.h"
+#include "expressions.h"
 
 void setup() {
     Serial.begin(9600);
@@ -14,6 +15,7 @@ void setup() {
     battery_setup();
     sleep_setup();
     buttons_setup();
+    expressions_setup();
     Serial.println("=========== setup complete =============");
     Serial.printf("battery level: %f  voltage: %f  charging: %i\n", battery_level(), battery_voltage(), battery_charging());
 }
@@ -21,6 +23,7 @@ void setup() {
 void loop()
 {
     buttons_loop();
+    expressions_loop();
     sleep_loop();
-    delay(10);
+    delay(2);
 }
