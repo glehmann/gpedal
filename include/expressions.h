@@ -3,5 +3,6 @@
 
 void expressions_setup();
 void expressions_loop();
+int expressions_status(int exp);
 
 #endif

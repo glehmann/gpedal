@@ -63,3 +63,7 @@ void expressions_loop() {
         }
     }
 }
+
+int expressions_status(int exp) {
+    return _exp_status[exp];
+}

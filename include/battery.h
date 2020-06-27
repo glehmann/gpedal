@@ -4,8 +4,7 @@
 #include <Arduino.h>
 
 void battery_setup();
-float battery_level();
+int battery_level();
 float battery_voltage();
-bool battery_charging();
 
 #endif
