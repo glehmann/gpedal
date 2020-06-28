@@ -2,6 +2,7 @@
 #include <ResponsiveAnalogRead.h>
 #include "pin.h"
 #include <RunningMedian.h>
+#include "midi.h"
 
 #define EXPRESSIONS_SIZE 3
 #define EXPRESSIONS_MEDIAN_SAMPLES 21
@@ -51,6 +52,8 @@ void expressions_setup() {
 }
 
 void expressions_loop() {
+    // see http://www.nortonmusic.com/midi_cc.html
+    int controls[EXPRESSIONS_SIZE] = {4, 7, 11};
     for(int exp=0; exp<EXPRESSIONS_SIZE; exp++) {
         _expressions[exp].update();
         _exp_median[exp]->add(_expressions[exp].getValue());
@@ -58,7 +61,7 @@ void expressions_loop() {
             int status = expressions_map(exp, _expressions[exp].getValue());
             if(status != _exp_status[exp] && (_exp_max[exp] - _exp_min[exp] > 100)) {
                 _exp_status[exp] = status;
-                Serial.printf("Pedal %i: %i  %i  %i  %i  %i\n", exp, status, _expressions[exp].getValue(), _expressions[exp].getRawValue(), _exp_min[exp], _exp_max[exp]);
+                midi_control_change(controls[exp], status, 1);
             }
         }
     }
