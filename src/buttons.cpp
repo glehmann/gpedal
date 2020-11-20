@@ -11,6 +11,7 @@
 
 ResponsiveAnalogRead _buttons_ladder[LADDER_SIZE];
 int _buttons_previous_button[LADDER_SIZE];
+int _buttons_delay_button[LADDER_SIZE];
 bool _buttons_status[BUTTONS_SIZE];
 
 void buttons_setup() {
@@ -19,6 +20,8 @@ void buttons_setup() {
     buttons_restore();
     _buttons_previous_button[0] = -1;
     _buttons_previous_button[1] = -1;
+    _buttons_delay_button[0] = -1;
+    _buttons_delay_button[1] = -1;
 }
 
 void buttons_on(int button) {
@@ -92,12 +95,16 @@ bool buttons_update_state() {
     for(int ladder=0; ladder<LADDER_SIZE; ladder++) {
         _buttons_ladder[ladder].update();
         int button = buttons_level_to_button(_buttons_ladder[ladder].getValue());
-        // we are only interested in transitions to a pushed down switch
-        if(button != -1 && button != _buttons_previous_button[ladder]) {
-            buttons_toggle(ladder * 4 + button);
-            updated = true;
+        // don't reacte immediately, or we might get a transition value
+        if(button == _buttons_delay_button[ladder]) {
+            // we are only interested in transitions to a pushed down switch
+            if(button != -1 && button != _buttons_previous_button[ladder]) {
+                buttons_toggle(ladder * 4 + button);
+                updated = true;
+            }
+            _buttons_previous_button[ladder] = button;
         }
-        _buttons_previous_button[ladder] = button;
+        _buttons_delay_button[ladder] = button;
     }
     return updated;
 }
