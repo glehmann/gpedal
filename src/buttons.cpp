@@ -25,14 +25,14 @@ void buttons_on(int button) {
     Serial.printf("button %i on\n", button);
     _buttons_status[button] = true;
     leds_on(button);
-    midi_note_on(60 + button, 127, 1);
+    midi_control_change(60 + button, 127, 1);
 }
 
 void buttons_off(int button) {
     Serial.printf("button %i off\n", button);
     _buttons_status[button] = false;
     leds_off(button);
-    midi_note_off(60 + button, 127, 1);
+    midi_control_change(60 + button, 0, 1);
 }
 
 void buttons_toggle(int button) {
